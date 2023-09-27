@@ -13,7 +13,7 @@ export class StartscreenComponent {
   }
 
   newGame(){
-    //Stert Game
+    //Start Game
     this.router.navigateByUrl('/game');
   }
 }

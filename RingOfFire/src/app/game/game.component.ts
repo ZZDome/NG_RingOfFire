@@ -21,6 +21,7 @@ export class GameComponent {
 
   newGame(){
     this.game = new Game;
+    console.log(this.game)
   }
 
   takeCard(){

@@ -1,0 +1,21 @@
+.field
+    width: 100vw
+    height: 100vh
+    max-width: 100%
+    background-image: url('../../assets/img/background1.jpg')
+    background-position: center
+    display: flex
+    justify-content: center
+    align-items: center
+
+.cardStack
+    position: relative
+    img
+        position: absolute
+        width: 8rem
+
+.topCard
+    cursor: pointer
+    transition: all 125ms ease-in-out
+    &:hover
+        transform: scale(1.05) translateX(-4px) translateY(-4px)

@@ -1,1 +1,18 @@
-<p>game works!</p>
+<div class="field">
+    <div class="cardStack">
+        <img 
+            [ngStyle]="{'right.px': i * 3, 'bottom.px': i * 3}" 
+            *ngFor="
+                let c of [0,1,2,3]; 
+                let i = index;" 
+            src="../../assets/img/cards/card_cover.png" 
+            alt="card cover"
+        >
+        <img 
+            class="topCard"
+            style="right: 12px; bottom: 12px;" 
+            src="../../assets/img/cards/card_cover.png" 
+            alt="card cover"
+        >
+    </div>
+</div>

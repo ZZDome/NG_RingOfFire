@@ -9,10 +9,18 @@
             alt="card cover"
         >
         <img 
+            (click)="takeCard()"
             class="topCard"
             style="right: 12px; bottom: 12px;" 
             src="../../assets/img/cards/card_cover.png" 
             alt="card cover"
+        >
+        <img 
+            *ngIf="pickCardAnimation"
+            class="pickCard"
+            style="right: 12px; bottom: 12px;" 
+            src="../../assets/img/cards/ace_1.png" 
+            alt="card ace_1"
         >
     </div>
 </div>

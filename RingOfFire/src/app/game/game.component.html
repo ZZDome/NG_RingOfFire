@@ -1,4 +1,9 @@
-<app-player style="top: 10vh;" class="playerPosition"></app-player>
+<app-player
+    *ngFor="let player of game.players; let i = index;"
+    [name]="player"
+    [ngStyle]="{'top.rem': 5 +  (i * 14)}" 
+    class="playerPosition">
+</app-player>
 <div class="field">
     <div class="cardStack">
         <!-- card stack -->

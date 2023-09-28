@@ -10,19 +10,31 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatInputModule} from '@angular/material/input';
+
+import {FormsModule} from '@angular/forms';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
+import { DialogAddPlayerComponent } from './dialog-add-player/dialog-add-player.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StartscreenComponent,
     GameComponent,
-    PlayerComponent
+    PlayerComponent,
+    DialogAddPlayerComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     MatButtonModule,
     MatIconModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
     BrowserAnimationsModule
   ],
   providers: [],

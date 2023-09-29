@@ -1,5 +1,12 @@
+<app-player
+    *ngFor="let player of game.players; let i = index;"
+    [name]="player"
+    [ngStyle]="{'top.rem': 5 +  (i * 14)}" 
+    class="playerPosition">
+</app-player>
 <div class="field">
     <div class="cardStack">
+        <!-- card stack -->
         <img 
             [ngStyle]="{'right.px': i * 3, 'bottom.px': i * 3}" 
             *ngFor="
@@ -15,12 +22,24 @@
             src="../../assets/img/cards/card_cover.png" 
             alt="card cover"
         >
+        <!-- stack for played cards -->
+        <img 
+            *ngFor="let card of game.playedCards"
+            class="playedCard"
+            src="../../assets/img/cards/{{ card }}.png" 
+            alt=""
+        >
+        <!-- current card (animation) -->
         <img 
             *ngIf="pickCardAnimation"
             class="pickCard"
             style="right: 12px; bottom: 12px;" 
-            src="../../assets/img/cards/ace_1.png" 
-            alt="card ace_1"
+            src="../../assets/img/cards/{{ currentCard }}.png" 
+            alt="{{currentCard}}"
         >
     </div>
 </div>
+
+<button mat-fab matTooltip="Primary" (click)="openDialog()" color="primary" class="btnAdd">
+    <mat-icon>add</mat-icon>
+  </button>

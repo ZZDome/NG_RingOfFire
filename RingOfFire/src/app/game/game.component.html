@@ -14,21 +14,21 @@
             *ngFor="
                 let c of [0,1,2,3]; 
                 let i = index;" 
-            src="../../assets/img/cards/card_cover.png" 
+            src="assets/img/cards/card_cover.png" 
             alt="card cover"
         >
         <img 
             (click)="takeCard()"
             class="topCard"
             style="right: 12px; bottom: 12px;" 
-            src="../../assets/img/cards/card_cover.png" 
+            src="assets/img/cards/card_cover.png" 
             alt="card cover"
         >
         <!-- stack for played cards -->
         <img 
             *ngFor="let card of game.playedCards"
             class="playedCard"
-            src="../../assets/img/cards/{{ card }}.png" 
+            src="assets/img/cards/{{ card }}.png" 
             alt=""
         >
         <!-- current card (animation) -->
@@ -36,7 +36,7 @@
             *ngIf="pickCardAnimation"
             class="pickCard"
             style="right: 12px; bottom: 12px;" 
-            src="../../assets/img/cards/{{ currentCard }}.png" 
+            src="assets/img/cards/{{ currentCard }}.png" 
             alt="{{currentCard}}"
         >
     </div>

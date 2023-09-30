@@ -71,6 +71,8 @@ export class GameComponent {
         this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
         this.game.playedCards.push(this.currentCard);
         this.pickCardAnimation = false;
+        console.log(this.game)
+        this.gameService.updateGame(this.game)
       }, 1250);
     }
   }
@@ -82,6 +84,7 @@ export class GameComponent {
       if (name && name.length > 0 && name.length < 16) {
         this.game.players.push(name);
         this.gameService.myGameName = name;
+        this.gameService.updateGame(this.game)
       }
     });
   }

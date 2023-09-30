@@ -27,6 +27,10 @@ export class GameComponent {
     console.log(this.game)
   }
 
+  openLobby(){
+
+  }
+
   takeCard(){
     if (!this.pickCardAnimation) {
       this.currentCard = this.game.stack.pop()

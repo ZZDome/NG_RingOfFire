@@ -16,4 +16,9 @@ export class StartscreenComponent {
     //Start Game
     this.router.navigateByUrl('/game');
   }
+
+  openLobby(){
+    //join Lobby
+    this.router.navigateByUrl('/lobby');
+  }
 }

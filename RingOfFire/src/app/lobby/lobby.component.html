@@ -1,0 +1,23 @@
+<div class="lobbyContainer">
+    <h1>Lobby</h1>
+    <span>Pick a game</span>
+    <mat-selection-list class="lobby" #games [multiple]="false">
+        <mat-list-option *ngFor="let game of typesOfGames" [value]="game">
+            {{game}}
+        </mat-list-option>
+    </mat-selection-list>
+
+    <p>
+        Option selected: {{games.selectedOptions.hasValue() ? games.selectedOptions.selected[0].value : 'None'}}
+    </p>
+    <div id="startBtn">
+        <div>
+            <h3>Join {{games.selectedOptions.hasValue() ? games.selectedOptions.selected[0].value : 'None'}}</h3>
+        </div>
+    </div>
+    <div (click)="backToStart()" id="backBtn">
+        <div>
+            <h3>Back</h3>
+        </div>
+    </div>
+</div>

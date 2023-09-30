@@ -19,9 +19,11 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { DialogAddPlayerComponent } from './dialog-add-player/dialog-add-player.component';
 import { GameInfoComponent } from './game-info/game-info.component';
 import {MatCardModule} from '@angular/material/card';
+import {MatListModule} from '@angular/material/list';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { LobbyComponent } from './lobby/lobby.component';
 
 
 @NgModule({
@@ -31,7 +33,8 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
     GameComponent,
     PlayerComponent,
     DialogAddPlayerComponent,
-    GameInfoComponent
+    GameInfoComponent,
+    LobbyComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +46,7 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
+    MatListModule,
     BrowserAnimationsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore())

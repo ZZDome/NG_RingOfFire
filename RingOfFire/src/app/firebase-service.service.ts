@@ -15,7 +15,6 @@ export class FirebaseServiceService {
   firestore: Firestore = inject(Firestore);
 
   unsubGames;
-  unsubGame;
 
   constructor() { 
 
@@ -24,7 +23,6 @@ export class FirebaseServiceService {
 
   ngonDestroy(){
     this.unsubGames();
-    this.unsubGame();
   }
 
   joinGame(id){

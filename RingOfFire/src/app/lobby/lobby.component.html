@@ -2,18 +2,20 @@
     <h1>Lobby</h1>
     <span>Pick a game</span>
     <mat-selection-list class="lobby" #games [multiple]="false">
-        <mat-list-option *ngFor="let game of getGamesList()" [value]="game">
-            <span>Name:{{game.name}}</span>
-            <span>Players: {{game.players}}</span>
+        <mat-list-option *ngFor="let game of getGamesList()" [value]="game.name">
+            <div (click)="setGameID(game.id)">
+                <span>Name: {{ game.name }}</span>
+                <span>Players: {{ game.players.length }}</span>
+            </div>
         </mat-list-option>
     </mat-selection-list>
 
     <p>
-        Option selected: {{games.selectedOptions.hasValue() ? games.selectedOptions.selected[0].value : 'None'}}
+        Option selected: {{games.selectedOptions.hasValue() ? games.selectedOptions.selected[0].value : 'a new game'}}
     </p>
-    <div id="startBtn">
+    <div (click)="joinGame()" id="startBtn">
         <div>
-            <h3>Join {{games.selectedOptions.hasValue() ? games.selectedOptions.selected[0].value : 'None'}}</h3>
+            <h3>Join {{games.selectedOptions.hasValue() ? games.selectedOptions.selected[0].value : 'a new game'}}</h3>
         </div>
     </div>
     <div (click)="backToStart()" id="backBtn">

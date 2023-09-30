@@ -5,23 +5,33 @@ import { Router } from '@angular/router';
 import { Game } from '../models';
 import { FirebaseServiceService } from '../firebase-service.service';
 
+import {MatSelectionList} from '@angular/material/list';
+
 @Component({
   selector: 'app-lobby',
   templateUrl: './lobby.component.html',
   styleUrls: ['./lobby.component.sass']
 })
 export class LobbyComponent {
+  games: MatSelectionList;
 
   gamesList: Game[] = []
-
-  typesOfGames: string[] = ['Game 1', 'Game 2', 'Game 3', 'New Game'];
+  typesOfGames: string[] = [];
 
   constructor(private gameService: FirebaseServiceService ,private router: Router){
-    /* this.getGamesList() */
+  }
+
+  setGameID(id){
+    console.log(id)
+    console.log(this.gameService.myGameId)
+    this.gameService.joinGame(id)
+  }
+
+  joinGame(){
+    this.router.navigateByUrl('/game');
   }
 
   getGamesList(){
-    console.log(this.gameService.games)
     return this.gameService.games
   }
 

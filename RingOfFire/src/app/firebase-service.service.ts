@@ -7,16 +7,73 @@ import { Game } from './models';
   providedIn: 'root'
 })
 export class FirebaseServiceService {
-
   games: Game[] = [];
+  myGameId: string;
+  myGameName: string;
+  currentGame;
 
   firestore: Firestore = inject(Firestore);
 
   unsubGames;
+  unsubGame;
 
   constructor() { 
 
     this.unsubGames = this.subGamesList();
+  }
+
+  ngonDestroy(){
+    this.unsubGames();
+    this.unsubGame();
+  }
+
+  joinGame(id){
+    if(id){
+      this.myGameId = id
+      this.games.forEach(element => {
+        if(element.id == this.myGameId){
+          this.currentGame = element
+        }
+      });
+    }else{
+
+    }
+
+  }
+
+  async updateGame(game: Game){
+    if(game.id){
+      let docRef = this.getSingleDocRef('games', game.id);
+      await updateDoc(docRef, this.getCleanGame(game)).catch(
+        (err) => {console.error(err)}
+      ).then();
+    }
+  }
+
+  getCleanGame(game: Game):{} {
+    return {
+      name: game.name,
+      players: game.players,
+      stack: game.stack,
+      playedCards: game.playedCards,
+      currentPlayer: game.currentPlayer
+    }
+  }
+
+  async addGame(item: Game, colId: 'games'){
+    if(colId == 'games'){
+      const newGame = await addDoc(this.getGamesRef(), item).catch(
+        (err) => {console.error(err)}
+      ).then()
+      console.log('add a new game with id:' + this.games)
+    }
+  }
+
+  subGame(docId){
+    return onSnapshot(this.getSingleDocRef('games', docId), (element) => {
+      this.games.push(this.setGameObject(element.data(), element.id));
+      console.log(element.data())
+    });
   }
 
   subGamesList(){

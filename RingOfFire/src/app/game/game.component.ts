@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Game } from '../models';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
+import { FirebaseServiceService } from '../firebase-service.service';
 
 @Component({
   selector: 'app-game',
@@ -9,17 +10,25 @@ import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player
   styleUrls: ['./game.component.sass']
 })
 export class GameComponent {
-
+  myGameId;
   pickCardAnimation = false
   currentCard = '';
-  game: Game;
+  game;
 
-  constructor(public dialog: MatDialog) {
+  constructor(private gameService: FirebaseServiceService ,public dialog: MatDialog) {
 
   }
 
   ngOnInit(): void {
-    this.newGame();
+    this.game = this.gameService.currentGame
+    if(this.gameService.myGameId){
+      this.myGameId = this.gameService.myGameId
+      this.openDialog('join')
+    }else{
+      this.myGameId = this.gameService.myGameId
+      this.newGame()
+      this.openDialog('new')
+    }
   }
 
   newGame() {
@@ -31,7 +40,7 @@ export class GameComponent {
   }
 
   this.shuffle(this.game.stack)
-  
+
   }
 
   shuffle(array) {
@@ -66,12 +75,13 @@ export class GameComponent {
     }
   }
 
-  openDialog(): void {
+  openDialog(value): void {
     const dialogRef = this.dialog.open(DialogAddPlayerComponent);
 
     dialogRef.afterClosed().subscribe(name => {
       if (name && name.length > 0 && name.length < 16) {
         this.game.players.push(name);
+        this.gameService.myGameName = name;
       }
     });
   }

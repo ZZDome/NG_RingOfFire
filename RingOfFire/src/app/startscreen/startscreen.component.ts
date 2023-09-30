@@ -13,6 +13,12 @@ export class StartscreenComponent {
   }
 
   newGame(){
+    //New game clientside
+
+    //shuffle cards
+
+    //push in db
+    
     //Start Game
     this.router.navigateByUrl('/game');
   }

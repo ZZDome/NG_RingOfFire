@@ -2,8 +2,9 @@
     <h1>Lobby</h1>
     <span>Pick a game</span>
     <mat-selection-list class="lobby" #games [multiple]="false">
-        <mat-list-option *ngFor="let game of typesOfGames" [value]="game">
-            {{game}}
+        <mat-list-option *ngFor="let game of getGamesList()" [value]="game">
+            <span>Name:{{game.name}}</span>
+            <span>Players: {{game.players}}</span>
         </mat-list-option>
     </mat-selection-list>
 

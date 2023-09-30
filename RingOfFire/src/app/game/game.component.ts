@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { Game } from '../models';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
 import { FirebaseServiceService } from '../firebase-service.service';
 
+@Injectable({
+  providedIn: 'root'
+})
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
@@ -11,9 +14,11 @@ import { FirebaseServiceService } from '../firebase-service.service';
 })
 export class GameComponent {
   myGameId;
+  myName;
   pickCardAnimation = false
   currentCard = '';
   game;
+  gameJson;
 
   constructor(private gameService: FirebaseServiceService ,public dialog: MatDialog) {
 
@@ -26,21 +31,26 @@ export class GameComponent {
       this.openDialog('join')
     }else{
       this.myGameId = this.gameService.myGameId
-      this.newGame()
-      this.openDialog('new')
+      this.newGame('test')
     }
   }
 
-  newGame() {
+  newGame(name) {
+    this.gameJson = {
+      name: name,
+      players: [],
+      stack: [],
+      playedCards: [],
+      currentPlayer: 0
+    };
     for (let i = 1; i < 14; i++) {
-      this.game.stack.push('ace_' + i );
-      this.game.stack.push('clubs_' + i);
-      this.game.stack.push('hearts_' + i);
-      this.game.stack.push('diamonds_' + i);
-  }
-
-  this.shuffle(this.game.stack)
-
+      this.gameJson.stack.push('ace_' + i );
+      this.gameJson.stack.push('clubs_' + i);
+      this.gameJson.stack.push('hearts_' + i);
+      this.gameJson.stack.push('diamonds_' + i);
+    }
+    this.shuffle(this.gameJson.stack)
+    this.gameService.addGame(this.gameJson, 'games')
   }
 
   shuffle(array) {
@@ -84,7 +94,8 @@ export class GameComponent {
       if (name && name.length > 0 && name.length < 16) {
         this.game.players.push(name);
         this.gameService.myGameName = name;
-        this.gameService.updateGame(this.game)
+        this.myName = name;
+        this.gameService.updateGame(this.game);
       }
     });
   }

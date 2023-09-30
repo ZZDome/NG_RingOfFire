@@ -12,17 +12,6 @@ export class StartscreenComponent {
 
   }
 
-  newGame(){
-    //New game clientside
-
-    //shuffle cards
-
-    //push in db
-    
-    //Start Game
-    this.router.navigateByUrl('/game');
-  }
-
   openLobby(){
     //join Lobby
     this.router.navigateByUrl('/lobby');

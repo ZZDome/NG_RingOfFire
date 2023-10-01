@@ -24,6 +24,7 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { LobbyComponent } from './lobby/lobby.component';
+import { DialogAddGameComponent } from './dialog-add-game/dialog-add-game.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { LobbyComponent } from './lobby/lobby.component';
     DialogAddPlayerComponent,
     GameInfoComponent,
     LobbyComponent,
+    DialogAddGameComponent,
   ],
   imports: [
     BrowserModule,

@@ -33,10 +33,7 @@ export class FirebaseServiceService {
           this.currentGame = element
         }
       });
-    }else{
-
     }
-
   }
 
   async deleteGame(docId:string){

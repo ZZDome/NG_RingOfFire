@@ -18,13 +18,13 @@ import { Router } from '@angular/router';
 export class GameComponent {
   myGameId;
   myName;
+  currentPlayerName;
   pickCardAnimation = false
   currentCard = '';
   game;
   gameJson;
 
   constructor(private gameService: FirebaseServiceService ,public dialog: MatDialog ,private router: Router) {
-
   }
 
   ngOnInit(): void {
@@ -33,10 +33,6 @@ export class GameComponent {
       this.myGameId = this.gameService.myGameId
       this.openDialogPlayer()
     }
-  }
-
-  newGameDialog(){
-    this.openDialogGame()
   }
 
   newGame(name) {
@@ -76,18 +72,20 @@ export class GameComponent {
   }
 
   takeCard() {
-    if (!this.pickCardAnimation) {
-      this.currentCard = this.game.stack.pop()
-      this.pickCardAnimation = true
-
-      setTimeout(() => {
-        this.game.currentPlayer++;
-        this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
-        this.game.playedCards.push(this.currentCard);
-        this.pickCardAnimation = false;
-        console.log(this.game)
-        this.gameService.updateGame(this.game)
-      }, 1250);
+    this.checkCurrentPlayer()
+    if(this.currentPlayerName == this.myName){
+      if (!this.pickCardAnimation) {
+        this.currentCard = this.game.stack.pop()
+        this.pickCardAnimation = true
+        setTimeout(() => {
+          this.game.currentPlayer++;
+          this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
+          this.game.playedCards.push(this.currentCard);
+          this.pickCardAnimation = false;
+          console.log(this.game)
+          this.gameService.updateGame(this.game)
+        }, 1250);
+      }
     }
   }
 
@@ -134,6 +132,15 @@ export class GameComponent {
       this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
       this.gameService.updateGame(this.game);
       this.router.navigateByUrl('/');
+    }
+  }
+
+  checkCurrentPlayer(){
+    for (let i = 0; i < this.game.players.length; i++) {
+      let element = this.game.players[i];
+      if(i == this.game.currentPlayer){
+        this.currentPlayerName = element;
+      }
     }
   }
 }

@@ -22,17 +22,16 @@ export class LobbyComponent {
   typesOfGames: string[] = [];
 
   constructor(private gameComp: GameComponent, private gameService: FirebaseServiceService ,private router: Router){
+
   }
 
   setGameID(id){
-    debugger
-    console.log(id)
     this.id = id
     this.gameService.joinGame(id)
   }
 
   newGame(){
-    this.gameComp.newGameDialog()
+    this.gameComp.openDialogGame()
   }
 
   joinGame(){

@@ -2,6 +2,7 @@ import { Component, OnInit, Injectable } from '@angular/core';
 import { Game } from '../models';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
+import { DialogAddGameComponent } from '../dialog-add-game/dialog-add-game.component';
 import { FirebaseServiceService } from '../firebase-service.service';
 
 
@@ -29,10 +30,9 @@ export class GameComponent {
     this.game = this.gameService.currentGame
     if(this.gameService.myGameId){
       this.myGameId = this.gameService.myGameId
-      this.openDialog('join')
+      this.openDialogPlayer()
     }else{
-      this.myGameId = this.gameService.myGameId
-      this.newGame('test')
+      this.openDialogGame()
     }
   }
 
@@ -88,7 +88,7 @@ export class GameComponent {
     }
   }
 
-  openDialog(value): void {
+  openDialogPlayer(): void {
     const dialogRef = this.dialog.open(DialogAddPlayerComponent);
 
     dialogRef.afterClosed().subscribe(name => {
@@ -97,6 +97,16 @@ export class GameComponent {
         this.gameService.myGameName = name;
         this.myName = name;
         this.gameService.updateGame(this.game);
+      }
+    });
+  }
+
+  openDialogGame(): void {
+    const dialogRef = this.dialog.open(DialogAddGameComponent);
+
+    dialogRef.afterClosed().subscribe(name => {
+      if (name && name.length > 0 && name.length < 16) {
+        this.newGame(name);
       }
     });
   }

@@ -44,8 +44,8 @@
 
 <app-game-info [card]="currentCard" class="pinBottom"></app-game-info>
 
-<div class="quitBtn">
-    <button mat-fab color="primary" aria-label="Example icon button with a delete icon">
+<div (click)="quitGame()" class="quitBtn">
+    <button mat-fab color="warn" aria-label="Example icon button with a delete icon">
       <mat-icon>close</mat-icon>
     </button>
   </div>

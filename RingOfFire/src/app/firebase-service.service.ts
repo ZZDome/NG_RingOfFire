@@ -39,6 +39,12 @@ export class FirebaseServiceService {
 
   }
 
+  async deleteGame(docId:string){
+    await deleteDoc(this.getSingleDocRef("games", docId)).catch(
+      (err) => {console.error(err)}
+    ).then();
+  }
+
   async updateGame(game: Game){
     if(game.id){
       let docRef = this.getSingleDocRef('games', game.id);

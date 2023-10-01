@@ -4,6 +4,7 @@ import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angu
 import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
 import { DialogAddGameComponent } from '../dialog-add-game/dialog-add-game.component';
 import { FirebaseServiceService } from '../firebase-service.service';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -22,7 +23,7 @@ export class GameComponent {
   game;
   gameJson;
 
-  constructor(private gameService: FirebaseServiceService ,public dialog: MatDialog) {
+  constructor(private gameService: FirebaseServiceService ,public dialog: MatDialog ,private router: Router) {
 
   }
 
@@ -109,7 +110,30 @@ export class GameComponent {
     dialogRef.afterClosed().subscribe(name => {
       if (name && name.length > 0 && name.length < 16) {
         this.newGame(name);
+        this.router.navigateByUrl('/lobby');
       }
     });
+  }
+
+  quitGame(){
+    for (let index = 0; index < this.game.players.length; index++) {
+      let element = this.game.players[index];
+      if (element == this.myName){
+        console.log(element)
+        this.game.players.splice(index, 1)
+      }
+    }
+    this.checkEmptyGame()
+  }
+
+  checkEmptyGame(){
+    if(this.game.players.length == 0){
+      this.gameService.deleteGame(this.myGameId);
+      this.router.navigateByUrl('/');
+    }else{
+      this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
+      this.gameService.updateGame(this.game);
+      this.router.navigateByUrl('/');
+    }
   }
 }

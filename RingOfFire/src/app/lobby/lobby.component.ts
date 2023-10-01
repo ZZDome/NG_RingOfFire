@@ -25,6 +25,8 @@ export class LobbyComponent {
   }
 
   setGameID(id){
+    debugger
+    console.log(id)
     this.id = id
     this.gameService.joinGame(id)
   }

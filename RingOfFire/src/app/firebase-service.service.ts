@@ -8,7 +8,7 @@ import { Game } from './models';
 })
 export class FirebaseServiceService {
   games: Game[] = [];
-  myGameId: string;
+  myGameId;
   myGameName: string;
   currentGame;
 

@@ -30,7 +30,7 @@ export class LobbyComponent {
   }
 
   newGame(){
-    this.gameComp.newGame('newGame')
+    this.gameComp.newGameDialog()
   }
 
   joinGame(){

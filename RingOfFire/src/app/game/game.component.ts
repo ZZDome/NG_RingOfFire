@@ -31,9 +31,11 @@ export class GameComponent {
     if(this.gameService.myGameId){
       this.myGameId = this.gameService.myGameId
       this.openDialogPlayer()
-    }else{
-      this.openDialogGame()
     }
+  }
+
+  newGameDialog(){
+    this.openDialogGame()
   }
 
   newGame(name) {

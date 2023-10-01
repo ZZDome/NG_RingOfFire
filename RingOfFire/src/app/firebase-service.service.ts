@@ -21,6 +21,10 @@ export class FirebaseServiceService {
     this.unsubGames = this.subGamesList();
   }
 
+  ngonListening(){
+    this.unsubGames = this.subGamesList();
+  }
+
   ngonDestroy(){
     this.unsubGames();
   }

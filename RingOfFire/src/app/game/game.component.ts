@@ -1,4 +1,4 @@
-import { Component, OnInit, Injectable } from '@angular/core';
+import { Component, OnInit, Injectable, HostListener } from '@angular/core';
 import { Game } from '../models';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
@@ -15,7 +15,9 @@ import { Router } from '@angular/router';
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.sass']
 })
-export class GameComponent {
+
+
+export class GameComponent implements OnInit {
   myGameId;
   myName;
   currentPlayerName;
@@ -24,7 +26,14 @@ export class GameComponent {
   game;
   gameJson;
 
+  @HostListener('window:beforeunload', ['$event'])
+  beforeUnloadHander(event) {
+    this.quitGame();
+      return false;
+  }
+
   constructor(private gameService: FirebaseServiceService ,public dialog: MatDialog ,private router: Router) {
+    
   }
 
   ngOnInit(): void {
@@ -127,10 +136,12 @@ export class GameComponent {
   checkEmptyGame(){
     if(this.game.players.length == 0){
       this.gameService.deleteGame(this.myGameId);
+      this.gameService.ngonDestroy();
       this.router.navigateByUrl('/');
     }else{
       this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
       this.gameService.updateGame(this.game);
+      this.gameService.ngonDestroy();
       this.router.navigateByUrl('/');
     }
   }

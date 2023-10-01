@@ -8,6 +8,7 @@ import { FirebaseServiceService } from '../firebase-service.service';
 import {MatSelectionList} from '@angular/material/list';
 import { GameComponent } from '../game/game.component';
 
+
 @Component({
   selector: 'app-lobby',
   templateUrl: './lobby.component.html',

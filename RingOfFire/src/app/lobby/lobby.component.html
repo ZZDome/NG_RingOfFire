@@ -9,10 +9,6 @@
             </div>
         </mat-list-option>
     </mat-selection-list>
-
-    <p>
-        Option selected: {{games.selectedOptions.hasValue() ? games.selectedOptions.selected[0].value : 'a new game'}}
-    </p>
     <div (click)="joinGame()" id="startBtn">
         <div>
             <h3>Join {{games.selectedOptions.hasValue() ? games.selectedOptions.selected[0].value : ''}}</h3>

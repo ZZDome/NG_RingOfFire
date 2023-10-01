@@ -63,7 +63,6 @@ export class FirebaseServiceService {
       const newGame = await addDoc(this.getGamesRef(), item).catch(
         (err) => {console.error(err)}
       ).then()
-      console.log('add a new game with id:' + this.games)
     }
   }
 
@@ -79,7 +78,6 @@ export class FirebaseServiceService {
       this.games= []
       list.forEach(element => {
         this.games.push(this.setGameObject(element.data(), element.id));
-        console.log(element.data(), element.id)
       });
     })
   }

@@ -46,7 +46,7 @@ export class LobbyComponent {
   }
 
   backToStart(){
-    this.gameService.ngonDestroy();
+    //this.gameService.ngonDestroy();
     this.router.navigateByUrl('/');
   }
 }

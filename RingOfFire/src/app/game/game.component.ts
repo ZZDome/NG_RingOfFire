@@ -4,6 +4,7 @@ import { MatDialog, MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angu
 import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
 import { FirebaseServiceService } from '../firebase-service.service';
 
+
 @Injectable({
   providedIn: 'root'
 })

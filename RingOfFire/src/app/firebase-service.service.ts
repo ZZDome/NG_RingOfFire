@@ -15,15 +15,25 @@ export class FirebaseServiceService {
   firestore: Firestore = inject(Firestore);
 
   unsubGames;
+  unsubGame;
+
 
   constructor() { 
   }
 
-  ngonListening(){
-    this.unsubGames = this.subGamesList();
+  ngonListening(id){
+    this.unsubGame = this.subGame(id);
   }
 
   ngonDestroy(){
+    this.unsubGame();
+  }
+
+  ngonListeningList(){
+    this.unsubGames = this.subGamesList();
+  }
+
+  ngonDestroyList(){
     this.unsubGames();
   }
 

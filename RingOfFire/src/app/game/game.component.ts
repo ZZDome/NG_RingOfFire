@@ -36,7 +36,10 @@ export class GameComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
     if(this.gameService.myGameId){
+      this.gameService.ngonDestroyList()
+      this.gameService.ngonListening(this.gameService.myGameId)
       this.myGameId = this.gameService.myGameId
       this.game = this.gameService.getMyGame(this.myGameId)
       this.openDialogPlayer()

@@ -26,6 +26,10 @@ export class LobbyComponent {
     this.gameService.ngonListeningList()
   }
 
+  emptyList(){
+    return this.gameService.games.length == 0
+  }
+
   setGameID(id){
     if(id){
       this.id = id

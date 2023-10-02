@@ -1,25 +1,27 @@
 <div class="lobbyContainer">
-    <h1>Lobby</h1>
-    <span>Pick a game</span>
-    <mat-selection-list class="lobby" #games [multiple]="false">
+    <h1 class="headline" style="font-size: xxx-large;" >Lobby</h1>
+    <span class="headline" style="font-size: x-large;" *ngIf="emptyList()">Create a new game.</span>
+    <span class="headline" style="font-size: x-large;" *ngIf="!emptyList()">Pick a game.</span>
+    <mat-selection-list *ngIf="!emptyList()" class="lobby" #games [multiple]="false">
         <mat-list-option (click)="setGameID(game.id)" *ngFor="let game of getGamesList()" [value]="game.name">
             <div>
                 <span>Name: {{ game.name }}</span>
                 <span>Players: {{ game.players.length }}</span>
+                <span>Cards remaining: {{ game.stack.length }}</span>
             </div>
         </mat-list-option>
     </mat-selection-list>
-    <div (click)="joinGame()" id="startBtn">
+    <div class="btn" *ngIf="!emptyList() && id " (click)="joinGame()" id="startBtn">
         <div>
-            <h3>Join {{games.selectedOptions.hasValue() ? games.selectedOptions.selected[0].value : ''}}</h3>
+            <h3>Join</h3>
         </div>
     </div>
-    <div (click)="newGame()" id="newGameBtn">
+    <div class="btn" (click)="newGame()" id="newGameBtn">
         <div>
             <h3>New Game</h3>
         </div>
     </div>
-    <div (click)="backToStart()" id="backBtn">
+    <div class="btn" (click)="backToStart()" id="backBtn">
         <div>
             <h3>Back</h3>
         </div>

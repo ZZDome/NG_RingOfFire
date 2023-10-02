@@ -30,6 +30,15 @@ export class GameComponent implements OnInit {
     this.quitGame();
       return false;
   }
+  onWindowClose(event: any): void {
+    this.quitGame();
+  }
+
+  @HostListener('window:popstate', ['$event'])
+  onPopState(event) {
+    this.quitGame();
+      return false;
+  }
 
   constructor(private gameService: FirebaseServiceService ,public dialog: MatDialog ,private router: Router) {
   

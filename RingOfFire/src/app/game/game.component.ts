@@ -149,6 +149,7 @@ export class GameComponent implements OnInit {
   }
 
   checkEmptyGame(game){
+    console.log('my id'+this.myGameId)
     if(game.players.length == 0){
       this.gameService.deleteGame(this.myGameId);
       this.gameService.ngonDestroy();

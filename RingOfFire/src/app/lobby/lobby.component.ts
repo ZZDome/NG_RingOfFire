@@ -23,7 +23,7 @@ export class LobbyComponent {
   typesOfGames: string[] = [];
 
   constructor(private gameComp: GameComponent, private gameService: FirebaseServiceService ,private router: Router){
-
+    this.gameService.ngonListening()
   }
 
   setGameID(id){

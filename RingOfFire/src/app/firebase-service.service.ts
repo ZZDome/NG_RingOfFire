@@ -17,8 +17,6 @@ export class FirebaseServiceService {
   unsubGames;
 
   constructor() { 
-
-    this.unsubGames = this.subGamesList();
   }
 
   ngonListening(){
@@ -93,7 +91,6 @@ export class FirebaseServiceService {
   subGame(docId){
     return onSnapshot(this.getSingleDocRef('games', docId), (element) => {
       this.games.push(this.setGameObject(element.data(), element.id));
-      console.log(element.data())
       console.log('get')
     });
   }
@@ -104,8 +101,6 @@ export class FirebaseServiceService {
       console.log('getList')
       list.forEach(element => {
         this.games.push(this.setGameObject(element.data(), element.id));
-        console.log(element.data())
-        console.log(this.games[0].id)
       });
     })
   }

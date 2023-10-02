@@ -49,11 +49,7 @@ export class GameComponent implements OnInit {
     }, 200);
   }
 
-  joinGame(id){
-    this.myGameId = id;
-  }
-
-  newGame(name) {
+  async newGame(name) {
     this.gameJson = {
       name: name,
       players: [],
@@ -70,7 +66,8 @@ export class GameComponent implements OnInit {
       this.gameJson.stack.push('diamonds_' + i);
     }
     this.shuffle(this.gameJson.stack)
-    this.gameService.addGame(this.gameJson, 'games')
+    await this.gameService.addGame(this.gameJson, 'games')
+    this.router.navigateByUrl('/game');
   }
 
   shuffle(array) {
@@ -131,7 +128,6 @@ export class GameComponent implements OnInit {
     dialogRef.afterClosed().subscribe(name => {
       if (name && name.length > 0 && name.length < 16) {
         this.newGame(name);
-        this.router.navigateByUrl('/lobby');
       }
     });
   }

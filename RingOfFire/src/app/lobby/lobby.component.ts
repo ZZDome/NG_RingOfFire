@@ -41,8 +41,6 @@ export class LobbyComponent {
 
   joinGame(){
     if(this.id){
-      this.gameComp.joinGame(this.id)
-      
       this.router.navigateByUrl('/game');
     }else{
       alert('Choose a Game or smash New Game')

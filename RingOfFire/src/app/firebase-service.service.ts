@@ -82,9 +82,9 @@ export class FirebaseServiceService {
   async addGame(item: Game, colId: 'games'){
     console.log('add')
     if(colId == 'games'){
-      const newGame = await addDoc(this.getGamesRef(), item).catch(
-        (err) => {console.error(err)}
-      ).then()
+      const newGame = await addDoc(this.getGamesRef(), item)
+      console.log("Document written with ID: ", newGame.id);
+      this.joinGame(newGame.id)
     }
   }
 

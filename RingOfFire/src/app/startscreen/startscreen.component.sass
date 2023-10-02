@@ -5,6 +5,7 @@
     display: flex
     justify-content: center
     align-items: center
+    overflow: hidden
 
     img
         display: flex
@@ -18,7 +19,7 @@
     display: flex
     justify-content: center
     position: absolute
-    bottom: 10rem
+    bottom: 15rem
     width: 20rem
     background-image: linear-gradient(yellow, red)
     border-radius: 1rem 
@@ -43,7 +44,9 @@
     left: 0
     width: 50%
     padding-left: 3rem
-    color: rgb(255, 123, 35)
+    background: -webkit-linear-gradient(yellow, red)
+    -webkit-background-clip: text
+    -webkit-text-fill-color: transparent
     font-size: 48px
 
 .title1
@@ -60,8 +63,10 @@
 .description
     display: flex
     position: absolute
-    top: 7rem
+    top: 5rem
     right: 0
-    padding: 5rem
-    width: 30%
-    color: rgb(255, 123, 35)
+    width: 25%
+    text-align: center
+    background: -webkit-linear-gradient(yellow, red)
+    -webkit-background-clip: text
+    -webkit-text-fill-color: transparent

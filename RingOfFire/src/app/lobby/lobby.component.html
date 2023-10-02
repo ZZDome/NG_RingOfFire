@@ -3,7 +3,7 @@
     <span class="headline" style="font-size: x-large;" *ngIf="emptyList()">Create a new game.</span>
     <span class="headline" style="font-size: x-large;" *ngIf="!emptyList()">Pick a game.</span>
     <mat-selection-list *ngIf="!emptyList()" class="lobby" #games [multiple]="false">
-        <mat-list-option (click)="setGameID(game.id)" *ngFor="let game of getGamesList()" [value]="game.name">
+        <mat-list-option class="option" (click)="setGameID(game.id)" *ngFor="let game of getGamesList()" [value]="game.name">
             <div>
                 <span>Name: {{ game.name }}</span>
                 <span>Players: {{ game.players.length }}</span>

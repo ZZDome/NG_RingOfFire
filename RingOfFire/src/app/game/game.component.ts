@@ -21,8 +21,7 @@ export class GameComponent implements OnInit {
   myGameId;
   myName;
   currentPlayerName;
-  pickCardAnimation = false
-  currentCard = '';
+  
   game;
   gameJson;
 
@@ -33,15 +32,25 @@ export class GameComponent implements OnInit {
   }
 
   constructor(private gameService: FirebaseServiceService ,public dialog: MatDialog ,private router: Router) {
-    
+  
   }
 
   ngOnInit(): void {
-    this.game = this.gameService.currentGame
     if(this.gameService.myGameId){
       this.myGameId = this.gameService.myGameId
+      this.game = this.gameService.getMyGame(this.myGameId)
       this.openDialogPlayer()
     }
+  }
+
+  syncGame(){
+    setInterval(() => {
+      this.game = this.gameService.getMyGame(this.myGameId)
+    }, 200);
+  }
+
+  joinGame(id){
+    this.myGameId = id;
   }
 
   newGame(name) {
@@ -50,7 +59,9 @@ export class GameComponent implements OnInit {
       players: [],
       stack: [],
       playedCards: [],
-      currentPlayer: 0
+      currentPlayer: 0,
+      pickCardAnimation: false,
+      currentCard: ''
     };
     for (let i = 1; i < 14; i++) {
       this.gameJson.stack.push('ace_' + i );
@@ -81,18 +92,19 @@ export class GameComponent implements OnInit {
   }
 
   takeCard() {
-    this.checkCurrentPlayer()
+    let game = this.game
+    this.checkCurrentPlayer(game)
     if(this.currentPlayerName == this.myName){
-      if (!this.pickCardAnimation) {
-        this.currentCard = this.game.stack.pop()
-        this.pickCardAnimation = true
+      if (!game.pickCardAnimation) {
+        game.currentCard = game.stack.pop()
+        game.pickCardAnimation = true
+        this.gameService.updateGame(game)
         setTimeout(() => {
-          this.game.currentPlayer++;
-          this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
-          this.game.playedCards.push(this.currentCard);
-          this.pickCardAnimation = false;
-          console.log(this.game)
-          this.gameService.updateGame(this.game)
+          game.currentPlayer++;
+          game.currentPlayer = game.currentPlayer % game.players.length;
+          game.playedCards.push(game.currentCard);
+          game.pickCardAnimation = false;
+          this.gameService.updateGame(game)
         }, 1250);
       }
     }
@@ -103,10 +115,12 @@ export class GameComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(name => {
       if (name && name.length > 0 && name.length < 16) {
+        this.game = this.gameService.getMyGame(this.myGameId)
         this.game.players.push(name);
         this.gameService.myGameName = name;
         this.myName = name;
         this.gameService.updateGame(this.game);
+        this.syncGame()
       }
     });
   }
@@ -123,33 +137,34 @@ export class GameComponent implements OnInit {
   }
 
   quitGame(){
-    for (let index = 0; index < this.game.players.length; index++) {
-      let element = this.game.players[index];
+    let game = this.game
+    for (let index = 0; index < game.players.length; index++) {
+      let element = game.players[index];
       if (element == this.myName){
         console.log(element)
-        this.game.players.splice(index, 1)
+        game.players.splice(index, 1)
       }
     }
-    this.checkEmptyGame()
+    this.checkEmptyGame(game)
   }
 
-  checkEmptyGame(){
-    if(this.game.players.length == 0){
+  checkEmptyGame(game){
+    if(game.players.length == 0){
       this.gameService.deleteGame(this.myGameId);
       this.gameService.ngonDestroy();
       this.router.navigateByUrl('/');
     }else{
-      this.game.currentPlayer = this.game.currentPlayer % this.game.players.length;
-      this.gameService.updateGame(this.game);
+      game.currentPlayer = game.currentPlayer % game.players.length;
+      this.gameService.updateGame(game);
       this.gameService.ngonDestroy();
       this.router.navigateByUrl('/');
     }
   }
 
-  checkCurrentPlayer(){
-    for (let i = 0; i < this.game.players.length; i++) {
-      let element = this.game.players[i];
-      if(i == this.game.currentPlayer){
+  checkCurrentPlayer(g){
+    for (let i = 0; i < g.players.length; i++) {
+      let element = g.players[i];
+      if(i == g.currentPlayer){
         this.currentPlayerName = element;
       }
     }

@@ -29,6 +29,18 @@ export class FirebaseServiceService {
     this.unsubGames();
   }
 
+  getMyGame(id){
+    let g;
+    for (let i = 0; i < this.games.length; i++) {
+      const element = this.games[i];
+      if(element.id == id){
+        g = element
+        this.currentGame = element
+      }
+    }
+    return g
+  }
+
   joinGame(id){
     if(id){
       this.myGameId = id
@@ -41,12 +53,14 @@ export class FirebaseServiceService {
   }
 
   async deleteGame(docId:string){
+    console.log('delete')
     await deleteDoc(this.getSingleDocRef("games", docId)).catch(
       (err) => {console.error(err)}
     ).then();
   }
 
   async updateGame(game: Game){
+    console.log('update')
     if(game.id){
       let docRef = this.getSingleDocRef('games', game.id);
       await updateDoc(docRef, this.getCleanGame(game)).catch(
@@ -61,11 +75,14 @@ export class FirebaseServiceService {
       players: game.players,
       stack: game.stack,
       playedCards: game.playedCards,
-      currentPlayer: game.currentPlayer
+      currentPlayer: game.currentPlayer,
+      pickCardAnimation: game.pickCardAnimation,
+      currentCard: game.currentCard
     }
   }
 
   async addGame(item: Game, colId: 'games'){
+    console.log('add')
     if(colId == 'games'){
       const newGame = await addDoc(this.getGamesRef(), item).catch(
         (err) => {console.error(err)}
@@ -77,14 +94,18 @@ export class FirebaseServiceService {
     return onSnapshot(this.getSingleDocRef('games', docId), (element) => {
       this.games.push(this.setGameObject(element.data(), element.id));
       console.log(element.data())
+      console.log('get')
     });
   }
 
   subGamesList(){
     return onSnapshot(this.getGamesRef(), (list) => {
       this.games= []
+      console.log('getList')
       list.forEach(element => {
         this.games.push(this.setGameObject(element.data(), element.id));
+        console.log(element.data())
+        console.log(this.games[0].id)
       });
     })
   }
@@ -97,6 +118,8 @@ export class FirebaseServiceService {
       stack: obj.stack || [""],
       playedCards: obj.playedCards || [""],
       currentPlayer: obj.currentPlayer || 0,
+      pickCardAnimation: obj.pickCardAnimation || false,
+      currentCard: obj.currentCard || "",
     }
   }
 

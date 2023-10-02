@@ -33,16 +33,16 @@
         >
         <!-- current card (animation) -->
         <img 
-            *ngIf="pickCardAnimation"
+            *ngIf="game.pickCardAnimation"
             class="pickCard"
             style="right: 12px; bottom: 12px;" 
-            src="assets/img/cards/{{ currentCard }}.png" 
-            alt="{{currentCard}}"
+            src="assets/img/cards/{{ game.currentCard }}.png" 
+            alt="{{game.currentCard}}"
         >
     </div>
 </div>
 
-<app-game-info [card]="currentCard" class="pinBottom"></app-game-info>
+<app-game-info [card]="game.currentCard" class="pinBottom"></app-game-info>
 
 <div (click)="quitGame()" class="quitBtn">
     <button mat-fab color="warn" aria-label="Example icon button with a delete icon">

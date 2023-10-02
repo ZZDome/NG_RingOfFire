@@ -27,8 +27,12 @@ export class LobbyComponent {
   }
 
   setGameID(id){
-    this.id = id
-    this.gameService.joinGame(id)
+    if(id){
+      this.id = id
+      this.gameService.joinGame(id)
+    }else{
+      alert('try again')
+    }
   }
 
   newGame(){
@@ -37,6 +41,8 @@ export class LobbyComponent {
 
   joinGame(){
     if(this.id){
+      this.gameComp.joinGame(this.id)
+      
       this.router.navigateByUrl('/game');
     }else{
       alert('Choose a Game or smash New Game')

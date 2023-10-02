@@ -91,7 +91,7 @@ export class GameComponent implements OnInit {
   takeCard() {
     let game = this.game
     this.checkCurrentPlayer(game)
-    if(this.currentPlayerName == this.myName){
+    if(this.currentPlayerName == this.myName && game.stack.length > 0){
       if (!game.pickCardAnimation) {
         game.currentCard = game.stack.pop()
         game.pickCardAnimation = true

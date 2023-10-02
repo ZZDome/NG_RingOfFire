@@ -1,44 +1,23 @@
 <div class="playerContainer">
-    <app-player
-        *ngFor="let player of game.players; let i = index;"
-        [playerActive] = "i == game.currentPlayer"
-        [name]="player" 
-        class="playerPosition">
+    <app-player *ngFor="let player of game.players; let i = index;" [playerActive]="i == game.currentPlayer"
+        [name]="player" class="playerPosition">
     </app-player>
 </div>
 <div class="field">
     <div class="cardStack">
-        <!-- card stack -->
-        <img 
-            [ngStyle]="{'right.px': i * 3, 'bottom.px': i * 3}" 
-            *ngFor="
-                let c of [0,1,2,3]; 
-                let i = index;" 
-            src="assets/img/cards/card_cover.png" 
-            alt="card cover"
-        >
-        <img 
-            (click)="takeCard()"
-            class="topCard"
-            style="right: 12px; bottom: 12px;" 
-            src="assets/img/cards/card_cover.png" 
-            alt="card cover"
-        >
+        <div *ngIf="game.stack.length <= 52">
+            <!-- card stack -->
+            <img [ngStyle]="{'right.px': i * 3, 'bottom.px': i * 3}" *ngFor="let c of [0,1,2,3]; let i = index;"
+                src="assets/img/cards/card_cover.png" alt="card cover">
+        </div>
+        <img (click)="takeCard()" class="topCard" style="right: 12px; bottom: 12px;"
+            src="assets/img/cards/card_cover.png" alt="card cover">
         <!-- stack for played cards -->
-        <img 
-            *ngFor="let card of game.playedCards"
-            class="playedCard"
-            src="assets/img/cards/{{ card }}.png" 
-            alt=""
-        >
+        <img *ngFor="let card of game.playedCards" class="playedCard" src="assets/img/cards/{{ card }}.png" alt="">
         <!-- current card (animation) -->
-        <img 
-            *ngIf="game.pickCardAnimation"
-            class="pickCard"
-            style="right: 12px; bottom: 12px;" 
-            src="assets/img/cards/{{ game.currentCard }}.png" 
-            alt="{{game.currentCard}}"
-        >
+        <img *ngIf="game.pickCardAnimation" class="pickCard" style="right: 12px; bottom: 12px;"
+            src="assets/img/cards/{{ game.currentCard }}.png" alt="{{game.currentCard}}">
+
     </div>
 </div>
 
@@ -46,7 +25,6 @@
 
 <div (click)="quitGame()" class="quitBtn">
     <button mat-fab color="warn" aria-label="Example icon button with a delete icon">
-      <mat-icon>close</mat-icon>
+        <mat-icon>close</mat-icon>
     </button>
-  </div>
-
+</div>

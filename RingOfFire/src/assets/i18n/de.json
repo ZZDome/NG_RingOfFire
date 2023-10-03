@@ -6,5 +6,16 @@
         "startbtn": "Spiel Starten",
         "lang.en": "Englisch",
         "lang.de": "Deutsch"
-	}
+	},
+    "lobby": {
+        "head": "Lobby",
+        "description.new": "Erstelle ein neues Spiel.",
+        "description.pick": "Wähle ein Spiel.",
+        "game.name": "Name: ",
+        "game.players": "Spieler: ",
+        "game.stack": "Karten übrig: ",
+        "btn.join": "Beitreten",
+        "btn.new": "Neues Spiel",
+        "btn.back": "Zurück"
+    }
 }

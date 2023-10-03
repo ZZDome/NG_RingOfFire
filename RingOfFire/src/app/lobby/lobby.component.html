@@ -1,29 +1,29 @@
 <div class="lobbyContainer">
-    <h1 class="headline" style="font-size: xxx-large;" >Lobby</h1>
-    <span class="headline" style="font-size: x-large;" *ngIf="emptyList()">Create a new game.</span>
-    <span class="headline" style="font-size: x-large;" *ngIf="!emptyList()">Pick a game.</span>
+    <h1 class="headline" style="font-size: xxx-large;" >{{'lobby.head' | translate}}</h1>
+    <span class="headline" style="font-size: x-large;" *ngIf="emptyList()">{{'lobby.description.new' | translate}}</span>
+    <span class="headline" style="font-size: x-large;" *ngIf="!emptyList()">{{'lobby.description.pick' | translate}}</span>
     <mat-selection-list *ngIf="!emptyList()" class="lobby" #games [multiple]="false">
         <mat-list-option class="option" (click)="setGameID(game.id)" *ngFor="let game of getGamesList()" [value]="game.name">
             <div>
-                <span>Name: {{ game.name }}</span>
-                <span class="mobileHide500">Players: {{ game.players.length }}</span>
-                <span class="mobileHide800">Cards remaining: {{ game.stack.length }}</span>
+                <span>{{'lobby.game.name' | translate}}{{ game.name }}</span>
+                <span class="mobileHide500">{{'lobby.game.players' | translate}}{{ game.players.length }}</span>
+                <span class="mobileHide800">{{'lobby.game.stack' | translate}}{{ game.stack.length }}</span>
             </div>
         </mat-list-option>
     </mat-selection-list>
     <div class="btn" *ngIf="!emptyList() && id " (click)="joinGame()" id="startBtn">
         <div>
-            <h3>Join</h3>
+            <h3>{{'lobby.btn.join' | translate}}</h3>
         </div>
     </div>
     <div class="btn" (click)="newGame()" id="newGameBtn">
         <div>
-            <h3>New Game</h3>
+            <h3>{{'lobby.btn.new' | translate}}</h3>
         </div>
     </div>
     <div class="btn" (click)="backToStart()" id="backBtn">
         <div>
-            <h3>Back</h3>
+            <h3>{{'lobby.btn.back' | translate}}</h3>
         </div>
     </div>
 </div>

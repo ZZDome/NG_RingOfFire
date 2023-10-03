@@ -30,5 +30,20 @@
         "field.name": "Name",
         "cancel": "Abbrechen",
         "confirm": "Ok"
+    },
+    "card.action":{
+        "title2": "Waterfall", "description2": "Everyone has to start drinking at the same time. As soon as player 1 stops drinking, player 2 may stop drinking. Player 3 may stop as soon as player 2 stops drinking, and so on.",
+        "title3": "You", "description3": "You decide who drinks" ,
+        "title4": "Me", "description4": "Congrats! Drink a shot!",
+        "title5": "Category", "description5": "Come up with a category (e.g. Colors). Each player must enumerate one item from the category.",
+        "title6": "Bust a jive", "description6": "Player 1 makes a dance move. Player 2 repeats the dance move and adds a second one.",
+        "title7": "Chicks", "description7": "All girls drink.",
+        "title8": "Heaven", "description8": "Put your hands up! The last player drinks!",
+        "title9": "Mate", "description9": "Pick a mate. Your mate must always drink when you drink and the other way around.",
+        "title10": "Thumbmaster", "description10": "You are the thumb master until the next 4 is picked. Put your thumb on a surface. Everyone must copy you. The last person to do so drinks.",
+        "title11": "Men", "description11": "All men drink.",
+        "title12": "Questionmaster", "description12": "You are now the question master until the next Queen is picked. If you ask someone a question and they answer, they have to drink.",
+        "title13": "Never have i ever...", "description13": "Say something you never did. Everyone who did it has to drink.",
+        "title14": "Rule", "description14": "Make a rule. Everyone needs to drink when he breaks the rule."
     }
 }

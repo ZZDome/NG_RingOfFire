@@ -6,8 +6,8 @@
         <mat-list-option class="option" (click)="setGameID(game.id)" *ngFor="let game of getGamesList()" [value]="game.name">
             <div>
                 <span>Name: {{ game.name }}</span>
-                <span>Players: {{ game.players.length }}</span>
-                <span>Cards remaining: {{ game.stack.length }}</span>
+                <span class="mobileHide500">Players: {{ game.players.length }}</span>
+                <span class="mobileHide800">Cards remaining: {{ game.stack.length }}</span>
             </div>
         </mat-list-option>
     </mat-selection-list>

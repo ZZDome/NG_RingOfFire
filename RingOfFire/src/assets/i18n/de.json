@@ -17,5 +17,18 @@
         "btn.join": "Beitreten",
         "btn.new": "Neues Spiel",
         "btn.back": "Zurück"
+    },
+    "dialog.player": {
+        "title": "Neuer Spieler",
+        "content.enter": "Gib deinen Namen ein.",
+        "field.name": "Name",
+        "confirm": "Ok"
+    },
+    "dialog.game": {
+        "title": "Neues Spiel",
+        "content.enter": "Gib deinem Spiel einen Namen.",
+        "field.name": "Name",
+        "cancel": "Abbrechen",
+        "confirm": "Ok"
     }
 }

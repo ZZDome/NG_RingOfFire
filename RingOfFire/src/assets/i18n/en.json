@@ -1,0 +1,11 @@
+{
+	"startscreen": {
+		"welcome1": "Ring of Fire is a public drinking game.",
+        "welcome2": "Play with your friends.",
+        "welcome3": "Enjoy the game and have fun.",
+        "startbtn": "Start Game",
+        "lang.en": "English",
+        "lang.de": "German"
+		
+	}
+}

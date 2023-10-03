@@ -5,12 +5,16 @@
         <h1 class="title3">Fire</h1>
     </div>
     <div class="description">
-        <h2>Ring of Fire is a public drinking game. <br> Play with your friends. <br> Enjoy the game and have fun. xD</h2>
+        <h2>{{'startscreen.welcome1' | translate}} <br> {{'startscreen.welcome2' | translate}} <br> {{'startscreen.welcome3' | translate}}</h2>
     </div>
     <img src="assets/img/startscreen.jpg" alt="">
     <div (click)="openLobby()" id="startBtn">
         <div>
-            <h3>Start Game</h3>
+            <h3>{{'startscreen.startbtn' | translate}}</h3>
         </div>
     </div>
+    <mat-radio-group class="languageContainer" [(ngModel)]="selected" aria-label="Select an option">
+        <mat-radio-button (click)="useLanguage('en')" [value]="1">{{'startscreen.lang.en' | translate}}</mat-radio-button>
+        <mat-radio-button (click)="useLanguage('de')" [value]="2">{{'startscreen.lang.de' | translate}}</mat-radio-button>
+      </mat-radio-group>
 </div>

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-startscreen',
@@ -7,13 +8,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./startscreen.component.sass']
 })
 export class StartscreenComponent {
+  selected: number
 
-  constructor(private router: Router){
-
+  constructor(private translate: TranslateService, private router: Router){
+    translate.setDefaultLang('en');
+    this.selected = 1
   }
 
   openLobby(){
     //join Lobby
     this.router.navigateByUrl('/lobby');
+  }
+
+  useLanguage(language: string) {
+    this.translate.use(language);
   }
 }

@@ -25,7 +25,14 @@ import { environment } from '../environments/environment';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { LobbyComponent } from './lobby/lobby.component';
 import { DialogAddGameComponent } from './dialog-add-game/dialog-add-game.component';
+import {MatRadioModule} from '@angular/material/radio';
 
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -42,6 +49,7 @@ import { DialogAddGameComponent } from './dialog-add-game/dialog-add-game.compon
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    MatRadioModule,
     MatCardModule,
     MatButtonModule,
     MatIconModule,
@@ -50,6 +58,14 @@ import { DialogAddGameComponent } from './dialog-add-game/dialog-add-game.compon
     MatInputModule,
     MatListModule,
     BrowserAnimationsModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore())
   ],

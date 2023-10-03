@@ -57,6 +57,27 @@
     100%
         transform: scale(1.1) translateX(5rem) translateY(-18rem) rotate( 10deg)
 
+@keyframes pickCardAnimation700
+        0%
+            transform: scale(1) rotate(-5deg)
+        40%
+            transform: scale(1.7) rotate(2deg)
+        60%
+            transform: scale(1.7) rotate(2deg)
+        100%
+            transform: scale(1.1) translateX(3rem) translateY(-12rem) rotate( 10deg)
+
+@keyframes pickCardAnimation800
+        0%
+            transform: scale(1) rotate(-5deg)
+        40%
+            transform: scale(1.7) rotate(2deg)
+        60%
+            transform: scale(1.7) rotate(2deg)
+        100%
+            transform: scale(1.1) translateX(4rem) translateY(-15rem) rotate( 10deg)
+
+
 .playerPosition
     position: relative
     right: 0
@@ -90,15 +111,7 @@
         animation: pickCardAnimation800 1s ease-in-out
         transform: scale(1.1) translateX(4rem) translateY(-15rem) rotate(10deg)
 
-    @keyframes pickCardAnimation800
-        0%
-            transform: scale(1) rotate(-5deg)
-        40%
-            transform: scale(1.7) rotate(2deg)
-        60%
-            transform: scale(1.7) rotate(2deg)
-        100%
-            transform: scale(1.1) translateX(4rem) translateY(-15rem) rotate( 10deg)
+    
 
 @media only screen and (max-width: 700px)
     .playerContainer
@@ -119,13 +132,4 @@
         animation: pickCardAnimation700 1s ease-in-out
         transform: scale(1.1) translateX(3rem) translateY(-12rem) rotate(10deg)
 
-    @keyframes pickCardAnimation700
-        0%
-            transform: scale(1) rotate(-5deg)
-        40%
-            transform: scale(1.7) rotate(2deg)
-        60%
-            transform: scale(1.7) rotate(2deg)
-        100%
-            transform: scale(1.1) translateX(3rem) translateY(-12rem) rotate( 10deg)
-
+    

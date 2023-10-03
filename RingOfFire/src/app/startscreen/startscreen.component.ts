@@ -11,7 +11,7 @@ export class StartscreenComponent {
   selected: number
 
   constructor(private translate: TranslateService, private router: Router){
-    translate.setDefaultLang('en');
+    translate.setDefaultLang('de');
     this.selected = 1
   }
 

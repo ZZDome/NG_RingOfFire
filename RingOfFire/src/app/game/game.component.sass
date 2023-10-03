@@ -19,7 +19,8 @@
     bottom: 0
     right: 0
     width: 15rem
-
+    padding-left: 3rem
+    overflow: hidden
 
 .cardStack
     position: relative
@@ -72,4 +73,59 @@
     bottom: 1rem
     left: 10rem
     right: 10rem
+
+@media only screen and (max-width: 800px)
+    .pinBottom
+        left: 1rem
+        right: 1rem
+
+    .cardStack
+    img
+        width: 8rem !important
+
+    .playedCard
+        transform: scale(1.1) translateX(4rem) translateY(-15rem) rotate(10deg)
+
+    .pickCard
+        animation: pickCardAnimation800 1s ease-in-out
+        transform: scale(1.1) translateX(4rem) translateY(-15rem) rotate(10deg)
+
+    @keyframes pickCardAnimation800
+        0%
+            transform: scale(1) rotate(-5deg)
+        40%
+            transform: scale(1.7) rotate(2deg)
+        60%
+            transform: scale(1.7) rotate(2deg)
+        100%
+            transform: scale(1.1) translateX(4rem) translateY(-15rem) rotate( 10deg)
+
+@media only screen and (max-width: 700px)
+    .playerContainer
+        left: 0
+        bottom: 70%
+        width: 14rem
+        overflow: visible
     
+
+    .cardStack
+    img
+        width: 7rem !important
+
+    .playedCard
+        transform: scale(1.1) translateX(3rem) translateY(-12rem) rotate(10deg)
+
+    .pickCard
+        animation: pickCardAnimation700 1s ease-in-out
+        transform: scale(1.1) translateX(3rem) translateY(-12rem) rotate(10deg)
+
+    @keyframes pickCardAnimation700
+        0%
+            transform: scale(1) rotate(-5deg)
+        40%
+            transform: scale(1.7) rotate(2deg)
+        60%
+            transform: scale(1.7) rotate(2deg)
+        100%
+            transform: scale(1.1) translateX(3rem) translateY(-12rem) rotate( 10deg)
+

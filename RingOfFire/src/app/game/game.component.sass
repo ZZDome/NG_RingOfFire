@@ -21,6 +21,7 @@
     width: 15rem
     padding-left: 3rem
     overflow: hidden
+    z-index: 1
 
 .cardStack
     position: relative
@@ -65,7 +66,7 @@
         60%
             transform: scale(1.7) rotate(2deg)
         100%
-            transform: scale(1.1) translateX(3rem) translateY(-12rem) rotate( 10deg)
+            transform: scale(1.1) translateX(6rem) translateY(-7rem) rotate( 10deg)
 
 @keyframes pickCardAnimation800
         0%
@@ -123,13 +124,13 @@
 
     .cardStack
     img
-        width: 7rem !important
+        width: 5rem !important
 
     .playedCard
-        transform: scale(1.1) translateX(3rem) translateY(-12rem) rotate(10deg)
+        transform: scale(1.1) translateX(6rem) translateY(-7rem) rotate(10deg)
 
     .pickCard
         animation: pickCardAnimation700 1s ease-in-out
-        transform: scale(1.1) translateX(3rem) translateY(-12rem) rotate(10deg)
+        transform: scale(1.1) translateX(6rem) translateY(-7rem) rotate(10deg)
 
     

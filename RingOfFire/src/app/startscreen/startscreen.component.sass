@@ -35,6 +35,7 @@
         display: flex
         width: 100%
         justify-content: center
+        align-items: center
 
 .title
     display: flex
@@ -73,6 +74,7 @@
 
 .languageContainer
     display: flex
+    text-align: center
     flex-direction: column
     position: absolute
     padding-right: 1rem
@@ -81,13 +83,51 @@
     right: 1rem
     background: -webkit-linear-gradient(yellow, red)
 
+@media only screen and (max-height: 900px)
+    .title
+        font-size: 40px
+
+@media only screen and (max-height: 800px)
+    .title
+        font-size: 35px
+
+    #startBtn
+        bottom: 12rem
+        width: 15rem
+
+@media only screen and (max-height: 700px)
+    .title
+        top: 1rem
+        font-size: 25px
+
+    #startBtn
+        bottom: 10rem
+        width: 15rem
+
+@media only screen and (max-height: 600px)
+    .title
+        font-size: 25px
+
+    #startBtn
+        bottom: 8rem
+        height: 4rem
+
 
 @media only screen and (max-width: 800px)
     .description
         justify-content: center
         top: 78%
         bottom: 2rem
-        
+
+    .languageContainer
+        flex-direction: row
+        top: 1rem
+        bottom: unset
+        right: 1rem
+        height: 2.5rem
+        width: 13rem
+
+    
 
 @media only screen and (max-width: 500px)
     .description

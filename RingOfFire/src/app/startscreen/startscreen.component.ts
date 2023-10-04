@@ -15,11 +15,12 @@ export class StartscreenComponent {
     this.selected = 1
   }
 
+  //join Lobby
   openLobby(){
-    //join Lobby
     this.router.navigateByUrl('/lobby');
   }
 
+  //set language
   useLanguage(language: string) {
     this.translate.use(language);
   }

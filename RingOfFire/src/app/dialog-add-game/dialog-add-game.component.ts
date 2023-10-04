@@ -10,10 +10,9 @@ export class DialogAddGameComponent {
 
   name = '';
 
-  constructor(private dialog: MatDialog, private dialogRef: MatDialogRef<DialogAddGameComponent>
-    ) {}
+  constructor(private dialog: MatDialog, private dialogRef: MatDialogRef<DialogAddGameComponent>) {
 
-
+  }
 
   onNoClick(): void {
     this.dialogRef.close();

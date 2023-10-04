@@ -21,7 +21,6 @@ export class GameComponent implements OnInit {
   myGameId;
   myName;
   currentPlayerName;
-  
   game;
   gameJson;
 
@@ -45,7 +44,6 @@ export class GameComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
     if(this.gameService.myGameId){
       this.gameService.ngonDestroyList()
       this.gameService.ngonListening(this.gameService.myGameId)
@@ -61,7 +59,7 @@ export class GameComponent implements OnInit {
     }, 200);
   }
 
-  async newGame(name) {
+  newGame(name) {
     this.gameJson = {
       name: name,
       players: [],
@@ -71,33 +69,34 @@ export class GameComponent implements OnInit {
       pickCardAnimation: false,
       currentCard: ''
     };
+    this.initNewGame()
+  }
+
+  async initNewGame(){
+    this.setCards()
+    this.shuffle(this.gameJson.stack)
+    await this.gameService.addGame(this.gameJson, 'games')
+    this.router.navigateByUrl('/game');
+  }
+
+  setCards(){
     for (let i = 1; i < 14; i++) {
       this.gameJson.stack.push('ace_' + i );
       this.gameJson.stack.push('clubs_' + i);
       this.gameJson.stack.push('hearts_' + i);
       this.gameJson.stack.push('diamonds_' + i);
     }
-    this.shuffle(this.gameJson.stack)
-    await this.gameService.addGame(this.gameJson, 'games')
-    this.router.navigateByUrl('/game');
   }
 
-  shuffle(array) {
-    let currentIndex = array.length, randomIndex;
-
-    // While there remain elements to shuffle.
+  shuffle(cards) {
+    let currentIndex = cards.length, randomIndex;
     while (currentIndex > 0) {
-
-      // Pick a remaining element.
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
-
-      // And swap it with the current element.
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex], array[currentIndex]];
+      [cards[currentIndex], cards[randomIndex]] = [cards[randomIndex], cards[currentIndex]];
     }
 
-    return array;
+    return cards;
   }
 
   takeCard() {
@@ -105,18 +104,26 @@ export class GameComponent implements OnInit {
     this.checkCurrentPlayer(game)
     if(this.currentPlayerName == this.myName && game.stack.length > 0){
       if (!game.pickCardAnimation) {
-        game.currentCard = game.stack.pop()
-        game.pickCardAnimation = true
-        this.gameService.updateGame(game)
+        this.cardAnimationIn(game)
         setTimeout(() => {
-          game.currentPlayer++;
-          game.currentPlayer = game.currentPlayer % game.players.length;
-          game.playedCards.push(game.currentCard);
-          game.pickCardAnimation = false;
-          this.gameService.updateGame(game)
+          this.cardAnimationOut(game)
         }, 1250);
       }
     }
+  }
+
+  cardAnimationIn(game){
+    game.currentCard = game.stack.pop()
+    game.pickCardAnimation = true
+    this.gameService.updateGame(game)
+  }
+
+  cardAnimationOut(game){
+    game.currentPlayer++;
+    game.currentPlayer = game.currentPlayer % game.players.length;
+    game.playedCards.push(game.currentCard);
+    game.pickCardAnimation = false;
+    this.gameService.updateGame(game)
   }
 
   openDialogPlayer(): void {
